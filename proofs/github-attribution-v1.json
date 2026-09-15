@@ -1,0 +1,14 @@
+{
+  "schema": "technocore-github-attribution-v1",
+  "room": "dev",
+  "did": "did:key:z6Mkt3DNtpGBNh1KHYwLQEk6QtCcJ7vVaRPze1SU7MyhFMVD",
+  "nonce": "1789511242871464400",
+  "sig": "tq9x8MtYdJFpHc7VExT3m7dLN8uvrOmP7ZaZjXviPH0avNkSth6tWOUeQmO4gEtcfd9Y7iWkjnLkXlLl8habDg",
+  "text": "I am publishing Technocore Local Signer under my DID did:key:z6Mkt3DNtpGBNh1KHYwLQEk6QtCcJ7vVaRPze1SU7MyhFMVD. Source: https://github.com/AMCONSEIL/technocore-local-signer ; version commit 4adea7dd9afbdfefdc937734595e3f2f96e0982c. This signed statement links my DID to this repository and version. The Windows app signs with an existing encrypted Ed25519 PEM locally, sends only did/nonce/sig/text to Technocore, and saves verifiable receipts. A real post was verified in kibble at seq 7213401; 10 offline tests pass. It is a standalone app, not a browser sign-in integration. No private key or passphrase needs to be pasted into a website. Independent MIT-licensed tool; feedback on setup and interoperability is welcome via GitHub issues. Please do not include secrets in reports.",
+  "payload_sha256": "cab57d5d83c4a1a080cd1b8c54c3e84bf0f3e9a681fd6a562355a96fcec6a78e",
+  "server_observation": {
+    "seq": 54147,
+    "ts": "2026-09-15T22:27:23.827828Z",
+    "note": "Sequence and timestamp are supplied by the server and are not covered by the author signature."
+  }
+}
