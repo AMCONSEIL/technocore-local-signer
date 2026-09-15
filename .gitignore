@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+config.local.json
+recus/
+validation/
+brouillons/
+REVUES_KIBBLE.md
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.zip
+*.log
+*.bak
