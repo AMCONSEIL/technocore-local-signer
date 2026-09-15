@@ -28,7 +28,7 @@ Publish reviewed source files, documentation, tests and explicitly reviewed publ
 
 The attribution proof contains only the project's public signed announcement. It intentionally excludes other users' messages from the server response. See [IDENTITY.md](IDENTITY.md) for verification instructions.
 
-A real user test is required on a new environment before distribution as working there. Browser features remain experimental until tested through Brave and the local confirmation flow.
+A real user test is required on a new environment before distribution as working there. Browser features remain experimental until tested through the selected browser and the local confirmation flow.
 
 ## References
 

@@ -1,17 +1,17 @@
-# Brave browser connector
+# Brave or Chrome browser connector
 
 [Back to the app](README.md) · [Roadmap](ROADMAP.md)
 
 The connector lets you write on Technocore and approve the signed publication in a local Windows window. It uses the same DID and encrypted PEM as the desktop app. The browser never receives the private key or passphrase.
 
-**Experimental:** offline checks and a Windows native-message round trip pass. A real Brave installation and user-approved publication must still be tested before calling the browser flow verified.
+**Experimental:** offline checks and a Windows native-message round trip pass. The full user-approved publication flow must still be verified in Brave and Chrome.
 
 ## Install
 
 1. Install the app and dependencies using [the Windows guide](README.md#get-started-on-windows).
-2. In Brave, open `brave://extensions` and enable **Developer mode**.
+2. In Brave, open `brave://extensions`; in Chrome, open `chrome://extensions`. Enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension` folder inside this app's folder.
-4. Copy the extension's **ID**: 32 lowercase letters shown on its card.
+4. Copy the extension's **ID**: 32 lowercase letters shown on its card in the browser you are setting up. This installation authorizes one extension ID; do not assume different browser installations have the same ID.
 5. In the app folder, double-click **`INSTALLER_CONNECTEUR.cmd`** and paste that ID. If no local identity configuration exists, the installer asks for the public DID and lets you select the encrypted PEM file. It does not open or upload the key.
 6. Reload the [Technocore web page](https://www.technocore.chat/humans#r/lobby).
 7. Below the message input, click **Connect local signer**. Check the displayed DID. The panel has an **English / Français** selector.
@@ -29,7 +29,7 @@ The installer creates a registration for the current Windows user and local runt
 
 The site's own **Sign in with a passkey** and **Send** controls remain independent. Its original badge may still say **Not signed in**: use the connector panel to see your local DID and its signing button. No site session is fabricated and no new DID is created.
 
-If the local window is behind Brave, bring it forward from the taskbar. Closing or cancelling the approval sends nothing. On an uncertain result or disconnection, inspect the local `recus/` folder before any retry.
+If the local window is behind your browser, bring it forward from the taskbar. Closing or cancelling the approval sends nothing. On an uncertain result or disconnection, inspect the local `recus/` folder before any retry.
 
 ## Read replies
 
@@ -41,7 +41,7 @@ The extension is limited to the Technocore `/humans` page on `technocore.chat` a
 
 After a crash, `recus/browser-request.lock` can remain. Confirm that no approval window or native host is running and inspect receipts before removing that specific stale lock manually. The normal `publication.lock` is also used by the signing core to serialize posts.
 
-To disable the connector, disable or remove the extension at `brave://extensions`. To remove this app's Windows native-host registration as well, run from the app folder:
+To disable the connector, disable or remove the extension at `brave://extensions` or `chrome://extensions`. To remove this app's Windows native-host registration as well, run from the app folder:
 
 ```powershell
 .\.venv\Scripts\python.exe install_browser_connector.py --uninstall

@@ -58,13 +58,13 @@ https://www.technocore.chat/humans#r/ROOM/SEQUENCE
 
 Replace `ROOM` and `SEQUENCE` with the values from your receipt. Room history can expire, so keep your local receipts.
 
-## Sign directly from Brave — in development
+## Sign directly from Brave or Chrome — experimental
 
-We are building a browser connector that uses the same local key and DID:
+The browser connector uses the same local key and DID:
 
 **Write on Technocore → click “Sign locally” → approve in Windows → see the signed message in the room.**
 
-This connector will use a separate local-signing button. It will not import your PEM into the browser or repurpose the site's passkey chooser. Browser installation and a real end-to-end user test are still pending.
+The connector uses a separate local-signing button. It keeps your PEM out of the browser and does not use the site's passkey chooser. Complete a real user test in your browser before relying on this experimental feature.
 
 The [experimental connector guide](BROWSER_CONNECTOR.md) explains installation. See the [roadmap](ROADMAP.md) for current status and planned improvements.
 

@@ -16,7 +16,7 @@ REGISTRY = 'Software\\Google\\Chrome\\NativeMessagingHosts\\' + HOST_NAME
 
 def setup(extension_id, folder=APP_DIR, executable=None, register=True):
     if re.fullmatch(r"[a-p]{32}", extension_id) is None:
-        raise ValueError("Paste the 32-letter extension ID from brave://extensions.")
+        raise ValueError("Paste the 32-letter extension ID from brave://extensions or chrome://extensions.")
     folder = folder.resolve()
     python = Path(executable or sys.executable).resolve()
     if python.name.lower() == "pythonw.exe":
@@ -79,13 +79,13 @@ def configure_if_missing(root):
         if config.get("did") and config.get("key_path"):
             return True
         raise ValueError("Existing local configuration is incomplete; it was not overwritten.")
-    did = simpledialog.askstring("Public DID / DID public", "Existing did:key:z6Mkâ€¦ / DID existant :", parent=root)
+    did = simpledialog.askstring("Public DID / DID public", "Existing did:key:z6Mk… / DID existant :", parent=root)
     if did is None:
         return False
     did = did.strip()
     if re.fullmatch(r"did:key:z6Mk[1-9A-HJ-NP-Za-km-z]{44}", did) is None:
         raise ValueError("Invalid Ed25519 public DID.")
-    key_path = filedialog.askopenfilename(parent=root, title="Select encrypted PEM / Choisir le PEM chiffrÃ©", filetypes=[("Encrypted PEM", "*.pem")])
+    key_path = filedialog.askopenfilename(parent=root, title="Select encrypted PEM / Choisir le PEM chiffré", filetypes=[("Encrypted PEM", "*.pem")])
     if not key_path:
         return False
     with path.open("x", encoding="utf-8") as out:
@@ -113,9 +113,9 @@ def main():
     root.withdraw()
     try:
         extension_id = simpledialog.askstring(
-            "Connect Brave / Connecter Brave",
-            "Open brave://extensions, enable Developer mode, load the extension folder.\n"
-            "Ouvrez brave://extensions, activez le mode dÃ©veloppeur, chargez le dossier extension.\n\n"
+            "Connect Brave or Chrome / Connecter Brave ou Chrome",
+            "Open brave://extensions or chrome://extensions, enable Developer mode, load the extension folder.\n"
+            "Ouvrez brave://extensions ou chrome://extensions, activez le mode développeur, chargez le dossier extension.\n\n"
             "Paste its 32-letter ID / Collez son identifiant de 32 lettres :", parent=root)
         if extension_id is None:
             return
@@ -125,7 +125,7 @@ def main():
         if not configure_if_missing(root):
             return
         setup(extension_id)
-        messagebox.showinfo("Ready / PrÃªt", "Reload Technocore, then click Connect local signer.\nRechargez Technocore puis cliquez sur Connecter le signataire local.", parent=root)
+        messagebox.showinfo("Ready / Prêt", "Reload Technocore, then click Connect local signer.\nRechargez Technocore puis cliquez sur Connecter le signataire local.", parent=root)
     except Exception as exc:
         messagebox.showerror("Connector setup / Installation", str(exc), parent=root)
     finally:

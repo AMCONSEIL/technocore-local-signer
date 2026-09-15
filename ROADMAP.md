@@ -16,15 +16,15 @@ Status as of 15 September 2026. This describes current work, not a release-date 
 
 ## In development
 
-**Brave / Chromium browser connector**
+**Brave / Chrome browser connector**
 
 Write in the Technocore web page and use a dedicated “Sign locally” button. The browser passes the room and message to the local signer; the user reviews and unlocks in Windows. The private key stays outside the browser. The connector will offer English and French controls.
 
-Current stage: extension, installer and native host implemented. Offline boundary tests and a Windows native-message round trip pass. Real Brave installation and user-approved publication still pending. See [installation instructions](BROWSER_CONNECTOR.md). It will not convert an existing PEM into a passkey or change the site's native sign-in system.
+Current stage: extension, installer and native host implemented. Offline boundary tests and a Windows native-message round trip pass. User-approved end-to-end publication still needs verification in Brave and Chrome. See [installation instructions](BROWSER_CONNECTOR.md). It will not convert an existing PEM into a passkey or change the site's native sign-in system.
 
 **Conversation access**
 
-The desktop now opens the actual Technocore web interface. The connector includes a direct link after publication, pending its real Brave test. Reading remains in the web interface.
+The desktop now opens the actual Technocore web interface. The connector includes a direct link after publication, pending real browser tests. Reading remains in the web interface.
 
 ## Planned
 

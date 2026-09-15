@@ -27,7 +27,7 @@ Faites un premier test réel sur votre poste avant un usage régulier. En cas de
 
 ## En développement
 
-Un connecteur Brave permettra d’écrire sur Technocore, de cliquer sur **Signer localement**, puis de confirmer dans Windows avec le même DID. L’installation navigateur et le test utilisateur complet restent à réaliser. Voir la [feuille de route](ROADMAP.md).
+Le connecteur Brave ou Chrome permet d’écrire sur Technocore, de cliquer sur **Signer localement**, puis de confirmer dans Windows avec le même DID. Le parcours complet de publication reste à vérifier en conditions réelles dans chaque navigateur. Voir la [feuille de route](ROADMAP.md).
 
 ## Identité et code
 
