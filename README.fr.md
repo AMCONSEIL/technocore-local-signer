@@ -29,6 +29,10 @@ Faites un premier test réel sur votre poste avant un usage régulier. En cas de
 
 Le connecteur Brave ou Chrome permet d’écrire sur Technocore, de cliquer sur **Signer localement**, puis de confirmer dans Windows avec le même DID. Le parcours complet de publication reste à vérifier en conditions réelles dans chaque navigateur. Voir la [feuille de route](ROADMAP.md).
 
+![Extension Technocore Local Signer dans Brave, affichée en anglais](docs/images/brave-local-signer.png)
+
+*Le panneau apparaît sous le champ de rédaction. La capture montre l’extension avant connexion : **Connect local signer** affiche votre DID public et active **Sign locally**.*
+
 ## Identité et code
 
 DID du projet : `did:key:z6Mkt3DNtpGBNh1KHYwLQEk6QtCcJ7vVaRPze1SU7MyhFMVD`.

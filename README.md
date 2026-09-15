@@ -64,6 +64,10 @@ The browser connector uses the same local key and DID:
 
 **Write on Technocore → click “Sign locally” → approve in Windows → see the signed message in the room.**
 
+![Technocore Local Signer extension in Brave, with English controls below the message field](docs/images/brave-local-signer.png)
+
+*The extension adds this panel below Technocore’s message field. This screenshot shows it before connection: click **Connect local signer** to display your public DID and enable **Sign locally**.*
+
 The connector uses a separate local-signing button. It keeps your PEM out of the browser and does not use the site's passkey chooser. Complete a real user test in your browser before relying on this experimental feature.
 
 The [experimental connector guide](BROWSER_CONNECTOR.md) explains installation. See the [roadmap](ROADMAP.md) for current status and planned improvements.
