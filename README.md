@@ -1,67 +1,106 @@
-# Signataire local Technocore
+# Technocore Local Signer
 
-Petite interface Windows pour publier un message signé sous un DID Ed25519 existant. Première version : 10 tests hors ligne réussis et une publication réelle vérifiée le 15 septembre 2026. Un test réel sur votre poste reste nécessaire avant utilisation régulière.
+**English** | [Français](README.fr.md)
 
-La clé reste dans un PEM chiffré choisi par l'utilisateur. L'application la déverrouille localement pour une publication validée, envoie uniquement `did`, `nonce`, `sig`, `text` vers `https://technocore.chat`, puis archive le reçu brut et vérifie sa signature. Elle n'exporte pas la seed, ne la copie pas au presse-papiers et ne stocke pas la passphrase. La clé déchiffrée existe temporairement en mémoire du processus ; Python ne garantit pas son effacement physique immédiat.
+A small Windows desktop app for posting signed Technocore messages with an existing Ed25519 DID. Review each message, unlock your encrypted PEM locally, and keep a verifiable receipt.
 
-Ce n'est pas un wallet monétaire, une extension de navigateur, un fournisseur GPU ou un agent autonome. Il n'y a aucun serveur local, aucune ouverture de port ni télémétrie. Cet outil indépendant n'est pas un client officiel FLOP.
+## Project identity
 
-## Identité du projet
-
-Projet porté par le DID public :
+Maintained under this public DID:
 
 `did:key:z6Mkt3DNtpGBNh1KHYwLQEk6QtCcJ7vVaRPze1SU7MyhFMVD`
 
-Compte GitHub de publication : [AMCONSEIL](https://github.com/AMCONSEIL). Voir [IDENTITY.md](IDENTITY.md) pour distinguer cette attribution de la preuve signée liant une version du code au DID.
+Published by [AMCONSEIL](https://github.com/AMCONSEIL). [IDENTITY.md](IDENTITY.md) includes a verified signed statement linking this DID to the initial source commit.
 
-## Ce que l'interface web permet
+## What the app does
 
-Cette application est une fenêtre Windows indépendante. Elle signe puis publie directement dans un salon Technocore. Elle ne connecte pas votre identité dans un navigateur et ne remplace pas les boutons « Sign in », « Useful » ou « Not useful » du site Kibble. Aucun pont navigateur, extension ou service de signature web n'est fourni.
+- Uses your existing encrypted Ed25519 PEM and checks its public DID before sending anything.
+- Displays the exact message and destination for manual approval.
+- Sends only `did`, `nonce`, `sig` and `text` to `https://technocore.chat` over HTTPS.
+- Saves the signed message and the server response, then verifies the returned message signature.
+- Prevents automatic retries and duplicate attempts for the same DID, room and text.
 
-Pour Kibble, préparer un message conforme au protocole du salon `kibble`, puis le publier depuis l'application. L'acceptation par Technocore ne garantit pas son indexation ou son score sur Kibble.
+The app does not export the seed, copy it to the clipboard or save your passphrase. The decrypted key exists temporarily in process memory; Python does not guarantee immediate physical memory erasure. There is no local web server, listening port or telemetry.
 
-## Sur le poste déjà préparé
+This is an independent tool, not an official FLOP client, a cryptocurrency wallet, a GPU provider or an autonomous posting agent.
 
-Double-cliquer sur `LANCER_SIGNATAIRE.cmd`. Le lanceur utilise l'environnement Python existant de technocore-did-starter si aucun environnement propre à l'outil n'existe. Il n'exécute pas le code de ce client ; seule sa bibliothèque `cryptography` est utilisée.
+## Browser and Kibble integration
 
-1. Contrôler le chemin du PEM et le DID public affiché.
-2. Choisir le salon et charger/coller un texte. Les brouillons d'attestation sont des évaluations datées : vérifier la fiche correspondante avant publication.
-3. Cliquer « Relire, signer et publier une fois ». Le texte exact et sa destination sont affichés avant validation.
-4. Saisir personnellement la passphrase dans la fenêtre masquée. Ne jamais l'envoyer à un assistant ou au support.
-5. Le message de succès indique la séquence et le dossier du reçu. Un résultat incertain bloque la répétition automatique du même texte : vérifier la salle et le nonce.
+**This version is a standalone desktop publisher. It does not sign you into a website.**
 
-Une fenêtre est une interface de validation manuelle, pas une permission permanente d'envoyer des messages. Aucun envoi n'a lieu au lancement.
+It does not connect to Technocore's **Sign in with a passkey** button or replace Kibble's **Useful / Not useful** buttons. There is no browser extension or web signing bridge in this version.
 
-## Installation indépendante pour la communauté
+To contribute to Kibble, prepare a message following the `kibble` room protocol and publish it from the app. Acceptance by Technocore does not establish that Kibble indexed or scored the message.
 
-Python 3.11 ou plus, Tkinter fourni par l'installateur Python Windows et `cryptography` sont nécessaires. Dans ce dossier :
+## Install on Windows
+
+Requirements: Python 3.11 with Tkinter, Git, an existing **encrypted Ed25519 PEM**, its passphrase and its public `did:key`. The app does not create an identity or replace a PEM file.
+
+In PowerShell:
 
 ```powershell
+git clone https://github.com/AMCONSEIL/technocore-local-signer.git
+Set-Location .\technocore-local-signer
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: -r requirements.txt
 .\.venv\Scripts\python.exe -m unittest -v test_signature_locale
 ```
 
-Puis double-cliquer sur le lanceur. Sans `config.local.json`, choisir son propre PEM chiffré et saisir son DID public. Ne jamais utiliser les clés de test RFC pour une identité réelle. L'application ne crée pas d'identité et ne remplace aucun PEM.
+Then double-click **`LANCER_SIGNATAIRE.cmd`**. Alternatively:
 
-## Reçus et limites de preuve
+```powershell
+.\.venv\Scripts\python.exe signataire.py
+```
 
-Chaque tentative crée un nouveau sous-dossier dans `recus` : intention publique, enveloppe signée, octets signés, réponse brute si reçue, résultat de vérification et empreintes SHA-256. La date et la séquence sont fournies par le serveur, pas couvertes par la signature de l'auteur. Conserver ces fichiers ne garantit ni ancienneté opposable, ni score Kibble, ni admissibilité à un airdrop.
+The launcher prefers the app's own `.venv`. On a previously prepared computer it can also use the Python environment under `technocore-did-starter`; it does not execute that client's code, only its installed `cryptography` dependency.
 
-Sur une erreur réseau, le message peut avoir été reçu malgré l'absence de réponse. Aucun retry automatique n'est effectué. Chercher le DID et le nonce dans le salon avant toute résolution manuelle. Si un arrêt brutal laisse `recus/publication.lock`, contrôler le processus et les tentatives avant de retirer personnellement ce verrou ; l'application ne le supprime pas automatiquement au prochain lancement.
+No personal configuration is included. Select your own encrypted PEM and enter the matching public DID in the app. Never use the public RFC test key as a real identity.
 
-Ne pas mélanger plusieurs signataires dans une même salle sans contrôler leurs nonces. Cette version utilise des entiers en nanosecondes compatibles avec le client Python déjà utilisé. Elle ne tente aucun contournement des contrôles du serveur.
+## Publish a message
 
-## Partage et retour arrière
+The desktop interface currently uses French labels. Use the following steps:
 
-Partager uniquement les fichiers sources, les tests, le lanceur, ce README, IDENTITY.md, .gitignore, la licence et requirements.txt. Exclure `config.local.json`, `recus`, tout PEM, toute seed, les environnements Python, caches et données personnelles. Le paquet de démonstration doit utiliser des données publiques ou synthétiques explicitement identifiées.
+1. **Fichier PEM chiffré existant**: choose your encrypted PEM with **Choisir…** (Browse).
+2. **DID public attendu**: enter the public DID corresponding to that key.
+3. **Salon**: choose or type the destination room. **Lire le salon** opens it in your browser.
+4. Write the message, or use **Charger un texte…** (Load text) to open a UTF-8 text file. Read the actual job and result before posting an attestation.
+5. Click **Relire, signer et publier une fois** (Review, sign and publish once). Check the exact normalized text and destination.
+6. Click **Valider et déverrouiller la clé** (Confirm and unlock the key), then enter the PEM passphrase yourself in the masked local dialog.
+7. Wait for **Publication confirmée** (Publication confirmed). It gives the server sequence number and receipt folder. **Ouvrir les reçus** opens that folder.
 
-Validation réalisée le 15 septembre 2026 : une publication dans `kibble`, séquence `7213401`, a reçu une réponse dont le DID, le nonce, le texte et la signature ont été vérifiés. Les reçus personnels ne sont pas inclus dans ce dépôt. Le classement Kibble et une éventuelle éligibilité à un airdrop ne sont pas établis par ce test.
+Nothing is sent on startup. Each publication requires a separate manual approval. Do not send the passphrase to an assistant or support contact.
 
-La clé constante présente dans les tests est le vecteur de test public RFC 8032, section 7.1, test 1. Elle ne correspond à aucun secret de l'utilisateur et ne doit jamais servir d'identité réelle. Les tests utilisent un transport simulé, sans publication réseau.
+**A real user test on each new computer is necessary before regular use.** Start with one useful message and verify its receipt.
 
-Ne pas annoncer un audit de sécurité indépendant ni une compatibilité universelle. Relire tout texte avant de le signer et effectuer un test réel utilisateur sur chaque nouvel environnement.
+## Receipts and uncertain results
 
-Pour revenir en arrière : fermer l'application et conserver ses reçus. Le client précédent, le PEM chiffré et ses sauvegardes restent inchangés ; aucune installation globale n'a été faite par la création de cet outil.
+Each attempt creates a new directory under `recus/`, containing the public intent, signed envelope, exact signed bytes, raw server response if received, verification result and SHA-256 hashes.
 
-Spécification de référence : https://technocore.chat/llms.txt et https://technocore.chat/auth.md.
+The author signature covers the room, nonce and message text. The server supplies the sequence number and timestamp; these are not covered by the author's signature. Receipts do not guarantee a Kibble score, eligibility for an airdrop or a legally established timestamp.
+
+If a network error occurs, the server may have received the message even though the app did not receive a response. The app never retries automatically. Check the room for the DID and nonce before taking further action.
+
+If the app crashes and leaves `recus/publication.lock`, check running processes and recorded attempts before manually removing that lock. The app does not silently remove a previous lock at startup.
+
+Avoid using multiple signers for the same DID and room without coordinating their nonces. This version uses nanosecond integer nonces and does not bypass server controls.
+
+## Validation
+
+- 10 offline tests passed on the release copy. Network requests are mocked in those tests.
+- A real user publication was verified in `kibble`, sequence `7213401`, on 15 September 2026. The receipt's DID, nonce, text and signature matched.
+- The confirmation buttons were checked at window sizes of 640×300, 760×440 and 760×600 pixels.
+- The public attribution announcement in `dev`, sequence `54147`, is preserved in [the signed proof](proofs/github-attribution-v1.json).
+
+The constant private key in the tests is **RFC 8032, section 7.1, test 1**, a published test vector. It is not a user's secret and must never be used for a real identity.
+
+These checks are not an independent security audit or a guarantee of compatibility with every environment.
+
+## Sharing and rollback
+
+Publish only the tracked source files, tests, launcher, English/French documentation, license, requirements and the explicitly reviewed public attribution proof. Keep personal configuration, raw receipts, PEM files, private seeds, environments, caches and private data out of the repository.
+
+The `.gitignore` excludes local configuration and receipt directories. A proof intended for publication must be extracted from the specific public message and reviewed separately; do not upload a whole receipt folder.
+
+To stop using the app, close it and retain your receipts. Your existing key, backups and previous client remain unchanged. Installing in `.venv` does not install the dependencies globally.
+
+Reference documentation: [Technocore protocol](https://technocore.chat/llms.txt) and [authentication/signing](https://technocore.chat/auth.md).

@@ -1,28 +1,30 @@
-# Identité publique du projet
+# Public project identity
 
-DID du porteur du projet :
+**English** | [Français](IDENTITY.fr.md)
+
+Project maintainer's public DID:
 
 `did:key:z6Mkt3DNtpGBNh1KHYwLQEk6QtCcJ7vVaRPze1SU7MyhFMVD`
 
-Compte GitHub de publication : [AMCONSEIL](https://github.com/AMCONSEIL).
+Publishing GitHub account: [AMCONSEIL](https://github.com/AMCONSEIL).
 
-Ce fichier attribue le projet au DID ci-dessus. Le DID est un identifiant public de clé Ed25519 ; il n'expose pas la clé privée et ne constitue pas une identité civile.
+This document attributes the project to the DID above. A DID identifies an Ed25519 public key; it does not disclose the private key or establish a person's legal identity.
 
-## Preuve du lien avec une version du code
+## Signed link to a source version
 
-Une mention dans un README est une déclaration. Une preuve cryptographique complémentaire consiste à publier, sous ce même DID, un message signé contenant l'URL exacte du dépôt et le hash complet du commit concerné.
+A README attribution is a declaration. The [verified public statement](proofs/github-attribution-v1.json) adds a cryptographic signature from this DID over a message naming the repository and the complete initial commit hash.
 
-Statut : annonce signée vérifiée. La [preuve publique](proofs/github-attribution-v1.json) contient uniquement le message d'attribution, son DID, son nonce, sa signature et les références publiques du reçu.
+- Declared repository: https://github.com/AMCONSEIL/technocore-local-signer
+- Referenced source commit: `4adea7dd9afbdfefdc937734595e3f2f96e0982c`.
+- Publication: `dev` room, sequence `54147`, server timestamp `2026-09-15T22:27:23.827828Z`.
+- Signed payload: the exact UTF-8 bytes of `room + "|" + nonce + "|" + text`.
+- Signature: Ed25519, encoded as unpadded base64url; the public key is extracted from the `did:key` identifier.
 
-- Dépôt déclaré : https://github.com/AMCONSEIL/technocore-local-signer
-- Version du code désignée : `4adea7dd9afbdfefdc937734595e3f2f96e0982c`.
-- Publication : salon `dev`, séquence `54147`, date serveur `2026-09-15T22:27:23.827828Z`.
-- Format signé : les octets UTF-8 exacts de `room + "|" + nonce + "|" + text`.
-- Signature : Ed25519, encodée en base64url sans remplissage ; clé publique extraite du DID `did:key`.
+The statement names that initial commit, not future versions. Its server sequence number and timestamp are not covered by the author's signature. Keeping the signed statement in the repository allows verification even after the room history expires.
 
-La preuve vise le commit initial ci-dessus, pas les versions futures. La séquence et la date sont des informations du serveur et ne sont pas couvertes par la signature de l'auteur. Le dépôt conserve le message signé pour permettre une vérification même si l'historique du salon expire.
+## Verify locally
 
-Vérification locale, depuis le dossier du dépôt après installation des dépendances :
+After installing the dependencies, run this Python snippet from the repository directory:
 
 ```python
 import json
@@ -32,11 +34,9 @@ from signature_locale import canonical, verify
 proof = json.loads(Path("proofs/github-attribution-v1.json").read_text(encoding="utf-8"))
 _, payload = canonical(proof["room"], proof["nonce"], proof["text"])
 verify(proof["did"], proof["sig"], payload)
-print("Signature Ed25519 valide ; relire le texte pour vérifier le dépôt et le commit.")
+print("Valid Ed25519 signature; read the statement to check the repository and commit.")
 ```
 
-Ce fichier n'inclut ni configuration personnelle, ni chemin local, ni clé privée, ni messages d'autres participants.
+Verification establishes that the key holder signed the statement. It does not, by itself, establish when development began or the quality of the code.
 
-La vérification consiste à contrôler la signature Ed25519 de l'annonce, puis l'URL du dépôt et le commit qu'elle désigne. Cela prouve que le détenteur de la clé a signé cette déclaration ; cela ne prouve pas à lui seul l'antériorité du développement ou la qualité du code.
-
-La clé privée, la passphrase, les configurations personnelles et les reçus locaux ne font pas partie du code publié.
+The proof contains only the public attribution message, its DID, nonce, signature and public receipt references. It does not include private keys, passphrases, local paths, personal configuration or other participants' messages. Raw local receipts are not published.
