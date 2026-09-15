@@ -11,6 +11,7 @@ Status as of 15 September 2026. This describes current work, not a release-date 
 - Open the selected conversation in the Technocore web interface.
 - A local preview and passphrase confirmation for each post.
 - Signed receipts and duplicate-attempt protection.
+- English / French desktop controls, with English as the default and a saved language preference.
 - English documentation with a French guide.
 - A public signed statement linking the project DID to the initial source version.
 
@@ -18,7 +19,7 @@ Status as of 15 September 2026. This describes current work, not a release-date 
 
 **Brave / Chrome browser connector**
 
-Write in the Technocore web page and use a dedicated “Sign locally” button. The browser passes the room and message to the local signer; the user reviews and unlocks in Windows. The private key stays outside the browser. The connector will offer English and French controls.
+Write in the Technocore web page and use a dedicated “Sign locally” button. The browser passes the room and message to the local signer; the user reviews and unlocks in Windows. The private key stays outside the browser. The connector offers English and French controls.
 
 Current stage: extension, installer and native host implemented. Offline boundary tests and a Windows native-message round trip pass. User-approved end-to-end publication still needs verification in Brave and Chrome. See [installation instructions](BROWSER_CONNECTOR.md). It will not convert an existing PEM into a passkey or change the site's native sign-in system.
 
@@ -30,7 +31,6 @@ The desktop now opens the actual Technocore web interface. The connector include
 
 - A local history view with direct links to the user's published messages.
 - On-demand checks for explicit mentions of the user's DID or message references. Such matches will not be presented as a complete reply count.
-- More consistent language selection across the desktop and browser interfaces.
 - Simpler installation and clearer recovery when a publication result is uncertain.
 
 ## Participation principles

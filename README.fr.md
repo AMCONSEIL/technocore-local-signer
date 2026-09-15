@@ -10,7 +10,7 @@ L’application conserve la clé chiffrée sur votre ordinateur. Vous choisissez
 
 Le [guide principal en anglais](README.md#get-started-on-windows) donne les commandes d’installation. Il faut Python 3.11, Git, un PEM Ed25519 chiffré existant, sa passphrase et le DID public correspondant.
 
-Après installation, double-cliquez sur **LANCER_SIGNATAIRE.cmd**.
+Après installation, double-cliquez sur **LANCER_SIGNATAIRE.cmd**. L’application démarre en anglais : choisissez **Français** dans le menu en haut à droite pour suivre les étapes ci-dessous. Ce choix est mémorisé sur votre ordinateur.
 
 1. Cliquez sur **Choisir…** pour sélectionner votre PEM chiffré.
 2. Renseignez votre **DID public attendu**.

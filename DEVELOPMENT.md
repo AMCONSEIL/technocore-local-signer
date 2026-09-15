@@ -7,7 +7,7 @@
 From the repository directory after installation:
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest -v test_signature_locale test_browser_host
+.\.venv\Scripts\python.exe -m unittest -v test_signature_locale test_browser_host test_ui
 ```
 
 The original desktop suite contains 10 offline tests. It uses a mocked transport and the published RFC 8032 section 7.1 test 1 key. Never use this test key as a real identity.
@@ -38,6 +38,6 @@ A real user test is required on a new environment before distribution as working
 
 ## Browser checks
 
-The combined Python suite has 17 offline tests. Native framing was also exercised through the Windows command wrapper with a synthetic public DID and a nonexistent PEM path; the wrong extension origin was rejected. No user key or registry entry was used in that probe.
+The combined Python suite has 21 offline tests: 10 core signing tests, 7 browser-host boundary tests and 4 desktop GUI tests. The GUI tests exercise English / French switching, preserved form data, local language preferences, error translation and button visibility at minimum window sizes. They use invisible Windows Tkinter windows with synthetic data; no user key is opened and no message is published. Native framing was also exercised through the Windows command wrapper with a synthetic public DID and a nonexistent PEM path; the wrong extension origin was rejected. No user key or registry entry was used in that probe.
 
 Run the service-worker boundary checks with `node extension/test_background.cjs`. These checks cover site/frame filtering, accepted fields, single pending approval, response filtering and no automatic retry. They do not replace a real browser/user test.

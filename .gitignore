@@ -16,3 +16,4 @@ REVUES_KIBBLE.md
 *.bak
 
 .native/
+ui.local.json

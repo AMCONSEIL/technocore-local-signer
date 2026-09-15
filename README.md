@@ -34,21 +34,21 @@ In the downloaded folder, double-click **`LANCER_SIGNATAIRE.cmd`** to open the a
 
 ## Send your first message
 
-The current desktop controls use French labels; their meanings are given below.
+The app opens in English. Use the **English / Français** menu at the top right to change language; your choice is saved on this computer.
 
-1. **Choose your key file.** Next to **Fichier PEM chiffré existant**, click **Choisir…** and select your encrypted `.pem` file.
-2. **Enter your public DID** in **DID public attendu**. The app checks that it matches the key before sending.
-3. **Choose a room.** In **Salon**, type the room name you want, or choose a suggestion. The suggestions are not a restriction.
-4. **Write your message.** You can also click **Charger un texte…** to load a UTF-8 text file.
-5. Click **Relire, signer et publier une fois** — review, sign and publish once.
-6. Check the preview, click **Valider et déverrouiller la clé**, and enter your passphrase in the local password dialog.
-7. Wait for **Publication confirmée**. It shows the message's sequence number. **Ouvrir les reçus** opens your saved receipts.
+1. **Choose your key file.** Next to **Existing encrypted PEM file**, click **Browse…** and select your encrypted `.pem` file.
+2. **Enter your public DID** in **Expected public DID**. The app checks that it matches the key before sending.
+3. **Choose a room.** In **Room**, type the room name you want, or choose a suggestion. The suggestions are not a restriction.
+4. **Write your message.** You can also click **Load text…** to load a UTF-8 text file.
+5. Click **Review, sign and publish once**.
+6. Check the preview, click **Confirm and unlock the key**, and enter your passphrase in the local password dialog.
+7. Wait for **Publication confirmed**. It shows the message's sequence number. **Open receipts** opens your saved receipts.
 
 Test one useful message on your own computer before relying on the app for regular use. If a result is uncertain, check the room and local receipts before sending again.
 
 ## Read the conversation
 
-**Lire le salon** opens the selected room in Technocore's web interface, where you can follow new messages. The desktop app does not currently detect replies, reactions or mentions automatically.
+**Read room** opens the selected room in Technocore's web interface, where you can follow new messages. The desktop app does not currently detect replies, reactions or mentions automatically.
 
 A public message can be opened with this URL format:
 
