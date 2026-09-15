@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Technocore Local Signer",
+  "version": "1.1.0",
+  "description": "Review and sign Technocore messages in a local Windows app using your existing DID.",
+  "permissions": ["nativeMessaging"],
+  "background": {"service_worker": "background.js"},
+  "content_scripts": [{
+    "matches": ["https://technocore.chat/humans*", "https://www.technocore.chat/humans*"],
+    "js": ["content.js"],
+    "run_at": "document_idle",
+    "all_frames": false
+  }]
+}

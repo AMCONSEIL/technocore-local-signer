@@ -30,7 +30,7 @@ class SignerWindow:
         ttk.Label(self.frame, text="La passphrase et la clé ne sont jamais envoyées au site. Chaque message sera public.", wraplength=830).pack(anchor="w", pady=(4, 14))
         self.key = tk.StringVar(value=config.get("key_path", str(Path.home() / "FLOP-Identite" / "identity.pem")))
         self.did = tk.StringVar(value=config.get("did", ""))
-        self.room = tk.StringVar(value="kibble")
+        self.room = tk.StringVar(value="lobby")
         ttk.Label(self.frame, text="Fichier PEM chiffré existant").pack(anchor="w")
         keyrow = ttk.Frame(self.frame)
         keyrow.pack(fill="x", pady=(3, 8))
@@ -78,7 +78,7 @@ class SignerWindow:
         try:
             room = self.room.get().strip()
             canonical(room, "1", "lecture")
-            webbrowser.open(f"{ORIGIN}/r/{room}")
+            webbrowser.open(f"https://www.technocore.chat/humans#r/{room}")
         except ValueError as exc:
             messagebox.showerror("Salon", str(exc), parent=self.root)
 
