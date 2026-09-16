@@ -2,13 +2,15 @@
 
 [Back to the app](README.md) · [Roadmap](ROADMAP.md)
 
+**Installing for the first time? [Use the illustrated installation guide](INSTALLATION.md)** for copy-and-paste commands, screenshots and a complete first-message walkthrough. This page is the shorter connector reference.
+
 The connector lets you write on Technocore and approve the signed publication in a local Windows window. It uses the same DID and encrypted PEM as the desktop app. The browser never receives the private key or passphrase.
 
-**Experimental:** offline checks and a Windows native-message round trip pass. The full user-approved publication flow must still be verified in Brave and Chrome.
+**Experimental:** offline checks and a Windows native-message round trip pass. The extension panel and local DID connection have also been observed in Brave. The full user-approved publication flow must still be verified in Brave and Chrome.
 
 ## Install
 
-1. Install the app and dependencies using [the Windows guide](README.md#get-started-on-windows).
+1. Install the app and dependencies using [steps 1–3 of the Windows guide](INSTALLATION.md#1-check-python-and-git).
 2. In Brave, open `brave://extensions`; in Chrome, open `chrome://extensions`. Enable **Developer mode**.
 3. Click **Load unpacked** and select the `extension` folder inside this app's folder.
 4. Copy the extension's **ID**: 32 lowercase letters shown on its card in the browser you are setting up. This installation authorizes one extension ID; do not assume different browser installations have the same ID.

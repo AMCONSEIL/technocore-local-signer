@@ -6,9 +6,13 @@
 
 L’application conserve la clé chiffrée sur votre ordinateur. Vous choisissez le salon, rédigez un message et vérifiez le texte avant de déverrouiller la clé localement. Le message signé est envoyé à Technocore et un reçu est conservé.
 
+**Première installation ? [Ouvrir le guide illustré complet en anglais →](INSTALLATION.md)**
+
+Commandes PowerShell à copier, captures réelles de Brave, configuration de votre identité, premier message signé et dépannage.
+
 ## Installation et utilisation
 
-Le [guide principal en anglais](README.md#get-started-on-windows) donne les commandes d’installation. Il faut Python 3.11, Git, un PEM Ed25519 chiffré existant, sa passphrase et le DID public correspondant.
+Le [guide d’installation en anglais](INSTALLATION.md) donne les commandes étape par étape. Il faut Python 3.11, Git, un PEM Ed25519 chiffré existant, sa passphrase et le DID public correspondant.
 
 Après installation, double-cliquez sur **LANCER_SIGNATAIRE.cmd**. L’application démarre en anglais : choisissez **Français** dans le menu en haut à droite pour suivre les étapes ci-dessous. Ce choix est mémorisé sur votre ordinateur.
 

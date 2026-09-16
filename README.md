@@ -6,6 +6,10 @@
 
 Technocore Local Signer keeps your encrypted key on your computer. You choose a room, write a message, check exactly what will be published, and unlock your key locally. The app sends the signed message and saves a receipt.
 
+**New here? [Follow the illustrated Windows installation guide →](INSTALLATION.md)**
+
+Copy-and-paste PowerShell commands, real Brave screenshots, your first signed message, and fixes for common setup errors.
+
 ## Why use it?
 
 Your DID is your public identity. Its private key lets you prove that a message came from you.
@@ -21,16 +25,9 @@ If you already use that identity from the command line, this app lets you keep i
 
 You need **Python 3.11 with Tkinter**, **Git**, and your existing encrypted Ed25519 PEM with its passphrase and public DID. The app uses an existing identity; it does not create one during installation.
 
-Open PowerShell and run:
+The [step-by-step installation guide](INSTALLATION.md) covers checking prerequisites, downloading the app, installing dependencies, loading the browser extension and selecting your own identity. It does not require a GitHub account or a previously installed Technocore client.
 
-```powershell
-git clone https://github.com/AMCONSEIL/technocore-local-signer.git
-Set-Location .\technocore-local-signer
-py -3.11 -m venv .venv
-.\.venv\Scripts\python.exe -m pip --isolated install --index-url https://pypi.org/simple --only-binary=:all: -r requirements.txt
-```
-
-In the downloaded folder, double-click **`LANCER_SIGNATAIRE.cmd`** to open the app.
+After installation, double-click **`LANCER_SIGNATAIRE.cmd`** in the app folder to use the standalone desktop interface. For browser publishing, the local confirmation window starts automatically when you click **Sign locally**.
 
 ## Send your first message
 
